@@ -118,8 +118,10 @@ class Snake(GameObject):
         """Обновляет направление движения змейки."""
         if self.next_direction:
             # Запрещаем разворот на 180 градусов
-            if ((self.next_direction[0] + self.direction[0],
-                self.next_direction[1] + self.direction[1]) != (0, 0)):
+            if (
+                    self.next_direction[0] + self.direction[0],
+                    self.next_direction[1] + self.direction[1],
+            ) != (0, 0):
                 self.direction = self.next_direction
             self.next_direction = None
 
