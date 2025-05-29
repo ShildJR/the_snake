@@ -35,8 +35,8 @@ class GameObject:
         """Инициализирует игровой объект.
 
         Args:
-            position (tuple): Начальная позиция объекта (x, y). По умолчанию (0, 0).
-            body_color (tuple): Цвет объекта в формате RGB. По умолчанию цвет фона.
+            position (tuple): Начальная позиция объекта (x, y).
+            body_color (tuple): Цвет объекта в формате RGB.
         """
         self.position = position
         self.body_color = body_color or BOARD_BACKGROUND_COLOR
@@ -81,7 +81,8 @@ class Apple(GameObject):
         ]
 
         available_positions = [
-            pos for pos in all_positions if pos not in self.snake_positions
+            pos for pos in all_positions
+            if pos not in self.snake_positions
         ]
 
         if not available_positions:
@@ -117,10 +118,8 @@ class Snake(GameObject):
         """Обновляет направление движения змейки."""
         if self.next_direction:
             # Запрещаем разворот на 180 градусов
-            if (
-                    self.next_direction[0] + self.direction[0],
-                    self.next_direction[1] + self.direction[1],
-            ) != (0, 0):
+            if ((self.next_direction[0] + self.direction[0],
+                self.next_direction[1] + self.direction[1]) != (0, 0)):
                 self.direction = self.next_direction
             self.next_direction = None
 
@@ -232,11 +231,10 @@ def main():
                 game_over = True
         else:
             screen.fill(BOARD_BACKGROUND_COLOR)
-            game_over_text = font.render("GAME OVER", True, (255, 0, 0))
+            game_over_text = font.render(
+                "GAME OVER", True, (255, 0, 0))
             restart_text = font.render(
-                "Press R to restart",
-                True,
-                (255, 255, 255))
+                "Press R to restart", True, (255, 255, 255))
 
             screen.blit(
                 game_over_text,
